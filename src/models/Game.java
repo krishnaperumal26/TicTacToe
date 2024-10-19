@@ -136,6 +136,7 @@ public class Game {
         //Check winner
         for(WinningStrategy winningStrategy : winningStrategies)
         {
+
             if(winningStrategy.checkWinner(board,move))
             {
                 gameStatus = GameStatus.END;
