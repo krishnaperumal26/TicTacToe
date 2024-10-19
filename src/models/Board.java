@@ -42,7 +42,7 @@ public class Board {
     {
         for(List<Cell> row :board )
         {
-            System.out.print("|");
+            System.out.print("| ");
             for(Cell cell : row)
             {
                 cell.display();

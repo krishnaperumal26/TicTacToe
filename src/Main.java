@@ -33,8 +33,10 @@ public class Main {
         }
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("-----------Game is starting-------------");
         while(gameController.getGameStatus(game).equals(GameStatus.INPROGRESS))
         {
+            System.out.println("This is how board look like....");
             gameController.displayBoard(game);
             System.out.println("Do you want to undo ?");
             String input = sc.next();
