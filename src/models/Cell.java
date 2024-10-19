@@ -46,8 +46,9 @@ public class Cell {
     public void display()
     {
         if(getCellStatus().equals(CellStatus.EMPTY))
-            System.out.print(" - |");
+            System.out.print("-");
         else
-            System.out.print(" "+getPlayer().getSymbol().getaChar());
+            System.out.print(getPlayer().getSymbol().getaChar());
+        System.out.print(" | ");
     }
 }

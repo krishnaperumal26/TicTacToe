@@ -14,27 +14,30 @@ public class Main {
     public static void main(String[] args) {
 
         GameController gameController = new GameController();
+        int boardSize = 3;
         List<Player> players  =  List.of(
                 new Player(new Symbol('X'), "KP", PlayerType.HUMAN),
                 new Bot(new Symbol('O'), "HP", BotDifficulityLevel.EASY)
         );
         List<WinningStrategy> winningStrategyList = List.of(
-                new OrderOneColumnWinningStrategy(),
-                new OrderOneColumnWinningStrategy(),
-                new OrderOneDiagonalWinningStrategy()
+                new OrderOneColumnWinningStrategy(boardSize, players),
+                new OrderOneRowWinningStrategy(boardSize, players),
+                new OrderOneDiagonalWinningStrategy(boardSize,players)
         );
         Game game;
         try
         {
-            game = gameController.createGame(3, players, winningStrategyList );
+            game = gameController.createGame(boardSize, players, winningStrategyList );
         } catch (Exception e) {
             System.out.println("Some thing went wrong");
             return;
         }
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("-----------Game is starting-------------");
         while(gameController.getGameStatus(game).equals(GameStatus.INPROGRESS))
         {
+            System.out.println("This is how board look like....");
             gameController.displayBoard(game);
             System.out.println("Do you want to undo ?");
             String input = sc.next();
@@ -48,8 +51,6 @@ public class Main {
 
 
         }
-
-
 
             gameController.printResult(game);
 

@@ -84,8 +84,6 @@ public class Game {
         this.winner = winner;
     }
 
-
-
     public void printResult()
     {
         if(gameStatus.equals(GameStatus.END))
@@ -97,6 +95,7 @@ public class Game {
             System.out.println("Game is draw");
         }
     }
+
     public void printBoard()
     {
         this.board.print();
@@ -121,10 +120,12 @@ public class Game {
     public void makeMove()
     {
         Player currentPlayer = players.get(currentMovePlayerIndex);
-
-        Cell proposedCell = currentPlayer.makeMove();
+        System.out.println("It is "+currentPlayer.getName()+"'s turn.");
+        Cell proposedCell = currentPlayer.makeMove(board);
+        System.out.println("Move made at row : " +proposedCell.getRow()+" Col : "+proposedCell.getCol()+"." );
         if(!validateMove(proposedCell))
         {
+            System.out.println("Invalid move. Retry.");
             return;
         }
         Cell cellInBoard = board.getBoard().get(proposedCell.getRow()).get(proposedCell.getCol());
@@ -135,6 +136,7 @@ public class Game {
         //Check winner
         for(WinningStrategy winningStrategy : winningStrategies)
         {
+
             if(winningStrategy.checkWinner(board,move))
             {
                 gameStatus = GameStatus.END;
@@ -152,6 +154,7 @@ public class Game {
         currentMovePlayerIndex%=players.size();
 
     }
+
     public static Builder getBuilder() {
         return new Builder();
     }
