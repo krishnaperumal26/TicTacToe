@@ -43,4 +43,11 @@ public class OrderOneRowWinningStrategy implements WinningStrategy {
         }
         return false;
     }
+
+    public void handleUndo(Board board, Move move)
+    {
+        int row = move.getCell().getRow();
+        Symbol symbol = move.getPlayer().getSymbol();
+        rowMaps.get(row).put(symbol, rowMaps.get(row).get(symbol) - 1);
+    }
 }

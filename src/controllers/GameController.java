@@ -24,7 +24,7 @@ public class GameController {
 
     public void undo(Game game)
     {
-
+        game.undo();
     }
 
     public void makeMove(Game game)
