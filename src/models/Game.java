@@ -120,9 +120,7 @@ public class Game {
     public void undo()
     {
         if(moves.size()==0)
-        {
             System.out.println("No move, Cant undo");
-        }
         Move lastMove = moves.get(moves.size()-1);
 
         for(WinningStrategy winningStrategy : winningStrategies)
