@@ -117,6 +117,30 @@ public class Game {
         return false;
     }
 
+    public void undo()
+    {
+        if(moves.size()==0)
+            System.out.println("No move, Cant undo");
+        Move lastMove = moves.get(moves.size()-1);
+
+        for(WinningStrategy winningStrategy : winningStrategies)
+        {
+            winningStrategy.handleUndo(board,lastMove);
+        }
+
+        Cell cellInBoard = lastMove.getCell();
+        cellInBoard.setCellStatus(CellStatus.EMPTY);
+        cellInBoard.setPlayer(null);
+        moves.remove(lastMove);
+        currentMovePlayerIndex-=1;
+        //here doing subtraction- So doing mod may let to zero. So add the size and then do mod
+        currentMovePlayerIndex+=players.size();
+        currentMovePlayerIndex%=players.size();
+
+
+
+    }
+
     public void makeMove()
     {
         Player currentPlayer = players.get(currentMovePlayerIndex);

@@ -61,4 +61,22 @@ public class OrderOneDiagonalWinningStrategy implements WinningStrategy {
         }
         return false;
     }
+
+    public void handleUndo(Board board, Move move)
+    {
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        Symbol symbol = move.getPlayer().getSymbol();
+
+         if(row==col)
+        {
+            leftDiagMap.put(symbol, leftDiagMap.get(symbol)-1);
+        }
+
+        if(row+col == board.getSize()-1)
+        {
+            rightGiagMap.put(symbol, rightGiagMap.get(symbol)+1);
+        }
+    }
+
 }
